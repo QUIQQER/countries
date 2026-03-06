@@ -18,9 +18,6 @@ use function strtoupper;
 
 /**
  * A Country
- *
- * @author  www.pcsg.de (Henning Leutz)
- * @package QUI\Countries
  */
 class Country extends QUI\QDOM
 {
@@ -121,20 +118,18 @@ class Country extends QUI\QDOM
      * @return QUI\ERP\Currency\Currency
      * @throws Exception
      */
-    public function getCurrency(): QUI\ERP\Currency\Currency // @phpstan-ignore-line
+    public function getCurrency(): QUI\ERP\Currency\Currency
     {
         // currency installed?
         QUI::getPackage('quiqqer/currency');
 
         try {
-            // @phpstan-ignore-next-line
             return QUI\ERP\Currency\Handler::getCurrency(
                 $this->getCurrencyCode()
             );
         } catch (QUI\Exception) {
         }
 
-        // @phpstan-ignore-next-line
         return QUI\ERP\Currency\Handler::getDefaultCurrency();
     }
 

@@ -8,6 +8,8 @@ namespace QUI\Countries;
 
 use QUI;
 
+use QUI\Exception;
+
 use function explode;
 use function file_get_contents;
 use function json_decode;
@@ -15,7 +17,6 @@ use function json_encode;
 use function md5_file;
 use function str_replace;
 use function strlen;
-use function strpos;
 
 /**
  * Country setup
@@ -28,8 +29,9 @@ class Setup extends QUI\QDOM
     /**
      * Country setup
      * Import the database
+     * @throws Exception
      */
-    public static function setup()
+    public static function setup(): void
     {
         $Config = QUI::getPackage('quiqqer/countries')->getConfig();
         $dataMd5 = $Config->getValue('general', 'dataMd5');

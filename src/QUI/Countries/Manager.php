@@ -44,7 +44,7 @@ class Manager extends QUI\QDOM
     }
 
     /**
-     * Chceks if Mixed is a country
+     * Checks if $Mixed is a country
      *
      * @param mixed $Mixed
      * @return boolean
@@ -140,7 +140,7 @@ class Manager extends QUI\QDOM
 
     /**
      * Return ths country list
-     * Only active counries
+     * Only active countries
      *
      * @return array
      */
