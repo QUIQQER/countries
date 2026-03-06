@@ -14,16 +14,13 @@ use function mb_strtolower;
 
 /**
  * Country Select field
- *
- * @author  www.pcsg.de (Henning Leutz)
- * @package quiqqer/countries
  */
 class Select extends QUI\Control
 {
     /**
      * constructor
      *
-     * @param array $attributes
+     * @param array<string, mixed> $attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -31,7 +28,7 @@ class Select extends QUI\Control
         $this->setAttributes([
             'name' => 'countries',
             'selected' => '',
-            'class' => false,    // css class to add to the select html element
+            'class' => false,    // CSS class to add to the select HTML element
             'required' => false,
             'use-geo-location' => true
         ]);
