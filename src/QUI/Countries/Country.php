@@ -10,6 +10,7 @@ use QUI;
 use QUI\Exception;
 
 use function array_map;
+use function is_array;
 use function is_null;
 use function is_string;
 use function json_decode;
@@ -22,15 +23,15 @@ use function strtoupper;
 class Country extends QUI\QDOM
 {
     /**
-     * @var array
+     * @var array<int, array<string, mixed>>
      */
-    protected mixed $languages = [];
+    protected array $languages = [];
 
     /**
      * constructor
      * If you want a country, use the manager
      *
-     * @param array $params
+     * @param array<string, mixed> $params
      *
      * @throws QUI\Exception
      * @example
@@ -65,7 +66,11 @@ class Country extends QUI\QDOM
         }
 
         if (is_string($params['languages'])) {
-            $this->languages = json_decode($params['languages'], true);
+            $decodedLanguages = json_decode($params['languages'], true);
+
+            if (is_array($decodedLanguages)) {
+                $this->languages = $decodedLanguages;
+            }
         }
 
         parent::setAttributes($params);
@@ -130,7 +135,13 @@ class Country extends QUI\QDOM
         } catch (QUI\Exception) {
         }
 
-        return QUI\ERP\Currency\Handler::getDefaultCurrency();
+        $DefaultCurrency = QUI\ERP\Currency\Handler::getDefaultCurrency();
+
+        if ($DefaultCurrency === null) {
+            throw new Exception('No default currency available.');
+        }
+
+        return $DefaultCurrency;
     }
 
     /**
@@ -168,13 +179,17 @@ class Country extends QUI\QDOM
     /**
      * Return all languages in the country
      *
-     * @return array
+     * @return list<string>
      */
     public function getLanguages(): array
     {
-        return array_map(function ($data) {
+        return array_values(array_filter(array_map(function (array $data): string {
+            if (!isset($data['language']) || !is_string($data['language'])) {
+                return '';
+            }
+
             return $data['language'];
-        }, $this->languages);
+        }, $this->languages)));
     }
 
     /**

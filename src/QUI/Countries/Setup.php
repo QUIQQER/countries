@@ -11,6 +11,7 @@ use QUI\Exception;
 
 use function explode;
 use function file_get_contents;
+use function is_array;
 use function json_decode;
 use function json_encode;
 use function md5_file;
@@ -33,6 +34,11 @@ class Setup extends QUI\QDOM
     public static function setup(): void
     {
         $Config = QUI::getPackage('quiqqer/countries')->getConfig();
+
+        if ($Config === null) {
+            throw new Exception('Country setup failed: package config is unavailable.');
+        }
+
         $dataMd5 = $Config->getValue('general', 'dataMd5');
 
         // Countries
@@ -40,7 +46,16 @@ class Setup extends QUI\QDOM
         $file = $path . '/db/intl.json';
         $fileMd5 = md5_file($file);
 
+        if ($fileMd5 === false) {
+            throw new Exception('Country setup failed: could not create checksum for country data file.');
+        }
+
         $Table = QUI::getDataBase()->table();
+
+        if ($Table === null) {
+            throw new Exception('Country setup failed: database table manager is unavailable.');
+        }
+
         $Table->addColumn(Manager::getDataBaseTableName(), [
             'active' => 'int(1) NOT NULL DEFAULT 1'
         ]);
@@ -49,10 +64,19 @@ class Setup extends QUI\QDOM
             return;
         }
 
-        $data = json_decode(file_get_contents($path . '/db/intl.json'), true);
-        $table = Manager::getDataBaseTableName();
+        $json = file_get_contents($path . '/db/intl.json');
 
-        $Table = QUI::getDataBase()->table();
+        if ($json === false) {
+            throw new Exception('Country setup failed: could not read country data file.');
+        }
+
+        $data = json_decode($json, true);
+
+        if (!is_array($data)) {
+            throw new Exception('Country setup failed: invalid country data payload.');
+        }
+
+        $table = Manager::getDataBaseTableName();
         $Table->delete($table);
 
         $Table->addColumn($table, [
