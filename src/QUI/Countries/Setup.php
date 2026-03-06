@@ -7,7 +7,6 @@
 namespace QUI\Countries;
 
 use QUI;
-
 use QUI\Exception;
 
 use function explode;
