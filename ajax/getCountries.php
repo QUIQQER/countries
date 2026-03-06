@@ -13,7 +13,7 @@ use QUI\Countries\Manager;
  *
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_countries_ajax_getCountries',
     function ($lang) {
         if (!isset($lang)) {

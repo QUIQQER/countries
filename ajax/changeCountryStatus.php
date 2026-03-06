@@ -11,7 +11,7 @@ use QUI\Countries\Manager;
  *
  * @return array
  */
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_countries_ajax_changeCountryStatus',
     function ($code, $status) {
         // check if country exists

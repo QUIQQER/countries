@@ -10,7 +10,7 @@
 use QUI\Countries\Manager;
 use QUI\Utils\Security\Orthos;
 
-QUI::$Ajax->registerFunction(
+QUI::getAjax()->registerFunction(
     'package_quiqqer_countries_ajax_getCountryByCode',
     function ($countryCode) {
         $countryCode = Orthos::clear($countryCode);

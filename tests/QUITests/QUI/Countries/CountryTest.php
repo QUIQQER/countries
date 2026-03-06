@@ -2,68 +2,59 @@
 
 namespace QUITests\QUI\Countries;
 
+use PHPUnit\Framework\TestCase;
 use QUI;
 
-/**
- * Class FieldsTest
- */
-class CountryTest extends \PHPUnit_Framework_TestCase
+class CountryTest extends TestCase
 {
-    public function testCountry()
+    public function testCountry(): void
     {
         $Country = QUI\Countries\Manager::get('de');
+
         $this->assertNotEmpty($Country);
         $this->assertNotEmpty($Country->getCode());
         $this->assertNotEmpty($Country->getName());
 
-        try {
-            QUI\Countries\Manager::get('__');
-
-            $this->fail('Das sollte fehlschlagen');
-        } catch (QUI\Exception $Exception) {
-            $this->assertTrue(true);
-        }
+        $this->expectException(QUI\Exception::class);
+        QUI\Countries\Manager::get('__');
     }
 
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $Country = QUI\Countries\Manager::get('nl');
-        $this->assertEquals($Country->getCode(), 'NL');
+        $this->assertSame('NL', $Country->getCode());
     }
 
-    public function testGetCode()
+    public function testGetCode(): void
     {
         $Country = QUI\Countries\Manager::get('gb');
 
         if ($Country->getAttribute('countries_iso_code_2')) {
-            $this->assertEquals($Country->getCode('countries_iso_code_2'), 'GB');
+            $this->assertSame('GB', $Country->getCode('countries_iso_code_2'));
         }
 
         if ($Country->getAttribute('countries_iso_code_3')) {
-            $this->assertEquals($Country->getCode('countries_iso_code_3'), 'GBR');
+            $this->assertSame('GBR', $Country->getCode('countries_iso_code_3'));
         }
-//        $this->setExpectedException('QUI\Exception');
-//        QUI\Countries\Manager::get('__');
     }
 
-
-    public function testGetCurrencyCode()
+    public function testGetCurrencyCode(): void
     {
         $Country = QUI\Countries\Manager::get('de');
         $currency = $Country->getCurrencyCode();
 
-        $this->assertEquals($currency, 'EUR');
+        $this->assertSame('EUR', $currency);
     }
 
-    public function testGetCurrency()
+    public function testGetCurrency(): void
     {
         $Country = QUI\Countries\Manager::get('de');
         $Currency = $Country->getCurrency();
 
-        $this->assertEquals($Currency->getCode(), 'EUR');
+        $this->assertSame('EUR', $Currency->getCode());
     }
 
-    public function testGetName()
+    public function testGetName(): void
     {
         $Country = QUI\Countries\Manager::get('pl');
         $code = $Country->getAttribute('countries_iso_code_2');
@@ -72,16 +63,13 @@ class CountryTest extends \PHPUnit_Framework_TestCase
         $localeVar = 'country.' . $code;
 
         if (QUI::getLocale()->exists('quiqqer/countries', $localeVar)) {
-            $this->assertEquals($name, QUI::getLocale()->get('quiqqer/countries', $localeVar));
+            $this->assertSame(QUI::getLocale()->get('quiqqer/countries', $localeVar), $name);
         }
 
-        // Hen! Hier kommt false (locale update gemacht).
-        //var_dump(QUI::getLocale()->exists('quiqqer/countries', $localeVar));
-
-        $this->assertEquals($name, 'Poland');
+        $this->assertSame('Poland', $name);
     }
 
-    public function testGetLanguages()
+    public function testGetLanguages(): void
     {
         $Country = QUI\Countries\Manager::get('de');
 

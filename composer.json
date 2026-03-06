@@ -17,6 +17,7 @@
     "require": {
         "php": "^8.1",
         "quiqqer/core": "^2",
+        "quiqqer/currency": "^2",
         "quiqqer/utils": "^2"
     },
     "autoload": {
