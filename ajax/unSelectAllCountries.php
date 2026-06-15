@@ -14,10 +14,10 @@ use QUI\Countries\Manager;
 QUI::getAjax()->registerFunction(
     'package_quiqqer_countries_ajax_unSelectAllCountries',
     function () {
-        QUI::getDataBase()->update(
-            Manager::getDataBaseTableName(),
+        QUI::getDataBaseConnection()->update(
+            QUI\Utils\Doctrine::quoteIdentifier(Manager::getDataBaseTableName()),
             ['active' => 0],
-            ''
+            []
         );
 
         QUI\Cache\Manager::clear('quiqqer/countries');
