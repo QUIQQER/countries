@@ -6,6 +6,10 @@
 
 namespace QUI\Countries;
 
+use Doctrine\DBAL\Schema\Column;
+use Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\Schema\TableDiff;
+use Doctrine\DBAL\Types\Type;
 use QUI;
 use QUI\Exception;
 
@@ -50,17 +54,11 @@ class Setup extends QUI\QDOM
             throw new Exception('Country setup failed: could not create checksum for country data file.');
         }
 
-        $Table = QUI::getDataBase()->table();
+        $table = Manager::getDataBaseTableName();
+        $SchemaManager = QUI::getSchemaManager();
 
-        if ($Table === null) {
-            throw new Exception('Country setup failed: database table manager is unavailable.');
-        }
-
-        $Table->addColumn(Manager::getDataBaseTableName(), [
-            'active' => 'int(1) NOT NULL DEFAULT 1'
-        ]);
-
-        if ($fileMd5 == $dataMd5) {
+        if ($fileMd5 == $dataMd5 && $SchemaManager->tablesExist([$table])) {
+            self::ensureActiveColumn($table);
             return;
         }
 
@@ -76,19 +74,11 @@ class Setup extends QUI\QDOM
             throw new Exception('Country setup failed: invalid country data payload.');
         }
 
-        $table = Manager::getDataBaseTableName();
-        $Table->delete($table);
+        if ($SchemaManager->tablesExist([$table])) {
+            $SchemaManager->dropTable($table);
+        }
 
-        $Table->addColumn($table, [
-            'countries_id' => 'int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY',
-            'countries_iso_code_2' => 'char(2) NOT NULL',
-            'countries_iso_code_3' => 'char(3) NOT NULL',
-            'numeric_code' => 'char(4) NOT NULL',
-            'language' => 'char(3) NOT NULL',
-            'languages' => 'text NOT NULL',
-            'currency' => 'char(3) NOT NULL',
-            'active' => 'int(1) NOT NULL DEFAULT 1'
-        ]);
+        self::createCountryTable($table);
 
         foreach ($data as $country => $entry) {
             $language = '';
@@ -119,7 +109,8 @@ class Setup extends QUI\QDOM
             }
 
             try {
-                QUI::getDataBase()->insert($table, [
+                QUI::getDataBaseConnection()->insert(QUI\Utils\Doctrine::quoteIdentifier($table), [
+                    'countries_name' => $country,
                     'countries_iso_code_2' => $country,
                     'countries_iso_code_3' => $entry['three_letter_code'],
                     'numeric_code' => $entry['numeric_code'],
@@ -129,10 +120,52 @@ class Setup extends QUI\QDOM
                 ]);
             } catch (QUI\Database\Exception $Exception) {
                 QUI\System\Log::addWarning($Exception->getMessage());
+            } catch (\Doctrine\DBAL\Exception $Exception) {
+                QUI\System\Log::addWarning($Exception->getMessage());
             }
         }
 
         $Config->setValue('general', 'dataMd5', $fileMd5);
         $Config->save();
+    }
+
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
+    private static function ensureActiveColumn(string $table): void
+    {
+        $SchemaManager = QUI::getSchemaManager();
+        $Table = $SchemaManager->introspectTable($table);
+
+        if ($Table->hasColumn('active')) {
+            return;
+        }
+
+        $SchemaManager->alterTable(new TableDiff(
+            $Table,
+            addedColumns: [
+                new Column('active', Type::getType('smallint'), ['default' => 1])
+            ]
+        ));
+    }
+
+    /**
+     * @throws \Doctrine\DBAL\Exception
+     */
+    private static function createCountryTable(string $table): void
+    {
+        $Table = new Table($table);
+        $Table->addColumn('countries_id', 'integer', ['autoincrement' => true]);
+        $Table->addColumn('countries_name', 'string', ['length' => 64]);
+        $Table->addColumn('countries_iso_code_2', 'string', ['length' => 2]);
+        $Table->addColumn('countries_iso_code_3', 'string', ['length' => 3]);
+        $Table->addColumn('numeric_code', 'string', ['length' => 4]);
+        $Table->addColumn('language', 'string', ['length' => 3]);
+        $Table->addColumn('languages', 'text');
+        $Table->addColumn('currency', 'string', ['length' => 3]);
+        $Table->addColumn('active', 'smallint', ['default' => 1]);
+        $Table->setPrimaryKey(['countries_id']);
+
+        QUI::getSchemaManager()->createTable($Table);
     }
 }

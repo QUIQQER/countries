@@ -9,6 +9,7 @@ namespace QUI\Countries;
 use QUI;
 
 use function get_class;
+use function in_array;
 use function is_array;
 use function strnatcmp;
 use function usort;
@@ -97,22 +98,31 @@ class Manager extends QUI\QDOM
             return self::$countries[$code];
         }
 
-        $result = QUI::getDataBase()->fetch([
-            'from' => self::getDataBaseTableName(),
-            'where' => [
-                $type => QUI\Utils\StringHelper::toUpper($code)
-            ],
-            'limit' => 1
-        ]);
-
-        if (!isset($result[0])) {
+        if (!in_array($type, ['countries_iso_code_2', 'countries_iso_code_3'], true)) {
             throw new QUI\Exception(
                 QUI::getLocale()->get('quiqqer/countries', 'exception.country.not.found'),
                 404
             );
         }
 
-        self::$countries[$code] = new Country($result[0]);
+        $QueryBuilder = QUI::getQueryBuilder();
+        $result = $QueryBuilder
+            ->select('*')
+            ->from(QUI\Utils\Doctrine::quoteIdentifier(self::getDataBaseTableName()))
+            ->where($QueryBuilder->expr()->eq($type, ':code'))
+            ->setParameter('code', QUI\Utils\StringHelper::toUpper($code))
+            ->setMaxResults(1)
+            ->executeQuery()
+            ->fetchAssociative();
+
+        if (!is_array($result)) {
+            throw new QUI\Exception(
+                QUI::getLocale()->get('quiqqer/countries', 'exception.country.not.found'),
+                404
+            );
+        }
+
+        self::$countries[$code] = new Country($result);
 
         return self::$countries[$code];
     }
@@ -125,11 +135,14 @@ class Manager extends QUI\QDOM
     public static function getCompleteList(): array
     {
         try {
-            $result = QUI::getDataBase()->fetch([
-                'from' => self::getDataBaseTableName(),
-                'order' => 'countries_iso_code_2 ASC'
-            ]);
-        } catch (QUI\Exception $Exception) {
+            $QueryBuilder = QUI::getQueryBuilder();
+            $result = $QueryBuilder
+                ->select('*')
+                ->from(QUI\Utils\Doctrine::quoteIdentifier(self::getDataBaseTableName()))
+                ->orderBy('countries_iso_code_2', 'ASC')
+                ->executeQuery()
+                ->fetchAllAssociative();
+        } catch (QUI\Exception | \Doctrine\DBAL\Exception $Exception) {
             QUI\System\Log::writeDebugException($Exception);
 
             return [];
@@ -147,14 +160,16 @@ class Manager extends QUI\QDOM
     public static function getList(): array
     {
         try {
-            $result = QUI::getDataBase()->fetch([
-                'from' => self::getDataBaseTableName(),
-                'where' => [
-                    'active' => 1
-                ],
-                'order' => 'countries_iso_code_2 ASC'
-            ]);
-        } catch (QUI\Exception $Exception) {
+            $QueryBuilder = QUI::getQueryBuilder();
+            $result = $QueryBuilder
+                ->select('*')
+                ->from(QUI\Utils\Doctrine::quoteIdentifier(self::getDataBaseTableName()))
+                ->where($QueryBuilder->expr()->eq('active', ':active'))
+                ->setParameter('active', 1)
+                ->orderBy('countries_iso_code_2', 'ASC')
+                ->executeQuery()
+                ->fetchAllAssociative();
+        } catch (QUI\Exception | \Doctrine\DBAL\Exception $Exception) {
             QUI\System\Log::writeDebugException($Exception);
 
             return [];

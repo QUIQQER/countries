@@ -15,12 +15,12 @@ QUI::getAjax()->registerFunction(
     'package_quiqqer_countries_ajax_changeCountryStatus',
     function ($code, $status) {
         // check if country exists
-        Manager::get($code);
+        $Country = Manager::get($code);
 
-        QUI::getDataBase()->update(
-            Manager::getDataBaseTableName(),
-            ['active' => $status],
-            ['countries_iso_code_2' => $code]
+        QUI::getDataBaseConnection()->update(
+            QUI\Utils\Doctrine::quoteIdentifier(Manager::getDataBaseTableName()),
+            ['active' => (int)$status],
+            ['countries_iso_code_2' => $Country->getCode()]
         );
 
         QUI\Cache\Manager::clear('quiqqer/countries');
