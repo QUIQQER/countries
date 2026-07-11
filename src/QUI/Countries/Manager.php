@@ -62,18 +62,30 @@ class Manager extends QUI\QDOM
     /**
      * Return the default country
      *
-     * @return Country|null
-     * @throws QUI\Exception
+     * @return Country
      */
-    public static function getDefaultCountry(): ?Country
+    public static function getDefaultCountry(): Country
     {
         if (self::$DefaultCountry === null) {
             try {
                 self::$DefaultCountry = QUI\Countries\Manager::get(
                     QUI::conf('globals', 'country')
                 );
-            } catch (QUI\Exception) {
-                self::$DefaultCountry = QUI\Countries\Manager::get('de');
+            } catch (\Throwable) {
+                try {
+                    self::$DefaultCountry = QUI\Countries\Manager::get('de');
+                } catch (\Throwable) {
+                    self::$DefaultCountry = new Country([
+                        'countries_id' => 0,
+                        'countries_name' => 'DE',
+                        'countries_iso_code_2' => 'DE',
+                        'countries_iso_code_3' => 'DEU',
+                        'numeric_code' => '276',
+                        'language' => 'de',
+                        'languages' => '[{"language":"de","percent":"100"}]',
+                        'currency' => 'EUR'
+                    ]);
+                }
             }
         }
 
