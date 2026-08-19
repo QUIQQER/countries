@@ -2,80 +2,126 @@
 
 namespace QUITests\QUI\Countries;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use QUI;
+use QUI\Countries\Country;
 
 class CountryTest extends TestCase
 {
-    public function testCountry(): void
+    #[DataProvider('provideMissingConstructorParameters')]
+    public function testConstructorRejectsMissingRequiredParameters(array $params, string $message): void
     {
-        $Country = QUI\Countries\Manager::get('de');
-
-        $this->assertNotEmpty($Country);
-        $this->assertNotEmpty($Country->getCode());
-        $this->assertNotEmpty($Country->getName());
-
         $this->expectException(QUI\Exception::class);
-        QUI\Countries\Manager::get('__');
+        $this->expectExceptionMessage($message);
+
+        new Country($params);
     }
 
-    public function testConstruct(): void
+    public static function provideMissingConstructorParameters(): array
     {
-        $Country = QUI\Countries\Manager::get('nl');
-        $this->assertSame('NL', $Country->getCode());
-    }
+        $complete = self::getCountryData();
+        $cases = [];
 
-    public function testGetCode(): void
-    {
-        $Country = QUI\Countries\Manager::get('gb');
-
-        if ($Country->getAttribute('countries_iso_code_2')) {
-            $this->assertSame('GB', $Country->getCode('countries_iso_code_2'));
+        foreach (
+            [
+                'countries_iso_code_2',
+                'countries_iso_code_3',
+                'countries_id',
+                'language',
+                'languages',
+                'currency'
+            ] as $requiredParameter
+        ) {
+            $params = $complete;
+            unset($params[$requiredParameter]);
+            $cases[$requiredParameter] = [$params, 'Parameter ' . $requiredParameter . ' fehlt'];
         }
 
-        if ($Country->getAttribute('countries_iso_code_3')) {
-            $this->assertSame('GBR', $Country->getCode('countries_iso_code_3'));
-        }
+        return $cases;
     }
 
-    public function testGetCurrencyCode(): void
+    public function testCodesAndLocaleCodeUseRequestedFormat(): void
     {
-        $Country = QUI\Countries\Manager::get('de');
-        $currency = $Country->getCurrencyCode();
+        $Country = new Country(self::getCountryData());
 
-        $this->assertSame('EUR', $currency);
+        $this->assertSame('DE', $Country->getCode());
+        $this->assertSame('DE', $Country->getCode('unsupported'));
+        $this->assertSame('DEU', $Country->getCode('countries_iso_code_3'));
+        $this->assertSame('de', $Country->getCodeToLower());
+        $this->assertSame('deu', $Country->getCodeToLower('countries_iso_code_3'));
+        $this->assertSame('de_DE', $Country->getLocaleCode());
     }
 
-    public function testGetCurrency(): void
+    public function testCurrencyCodeIsReturned(): void
     {
-        $Country = QUI\Countries\Manager::get('de');
-        $Currency = $Country->getCurrency();
+        $Country = new Country(self::getCountryData());
 
-        $this->assertSame('EUR', $Currency->getCode());
+        $this->assertSame('EUR', $Country->getCurrencyCode());
     }
 
-    public function testGetName(): void
+    public function testNameUsesTranslationAndFallsBackToStoredName(): void
     {
-        $Country = QUI\Countries\Manager::get('pl');
-        $code = $Country->getAttribute('countries_iso_code_2');
-        $name = $Country->getName();
-
-        $localeVar = 'country.' . $code;
-
-        if (QUI::getLocale()->exists('quiqqer/countries', $localeVar)) {
-            $this->assertSame(QUI::getLocale()->get('quiqqer/countries', $localeVar), $name);
-        }
-
         $Locale = new QUI\Locale();
         $Locale->setCurrent('en');
+        $Country = new Country(self::getCountryData());
 
-        $this->assertSame('Poland', $Country->getName($Locale));
+        $this->assertSame('Germany', $Country->getName($Locale));
+
+        $data = self::getCountryData();
+        $data['countries_iso_code_2'] = 'XQ';
+        $data['countries_name'] = 'Fallback country';
+        $UnknownCountry = new Country($data);
+
+        $this->assertSame('Fallback country', $UnknownCountry->getName($Locale));
     }
 
-    public function testGetLanguages(): void
+    public function testLanguagesContainOnlyValidLanguageStrings(): void
     {
-        $Country = QUI\Countries\Manager::get('de');
+        $data = self::getCountryData();
+        $data['languages'] = json_encode([
+            ['language' => 'de', 'percent' => '80'],
+            ['percent' => '10'],
+            ['language' => 123, 'percent' => '5'],
+            ['language' => 'en', 'percent' => '5']
+        ], JSON_THROW_ON_ERROR);
+        $Country = new Country($data);
 
-        $this->assertNotEmpty($Country->getLanguages());
+        $this->assertSame(['de', 'en'], $Country->getLanguages());
+        $this->assertSame('de', $Country->getLang());
+    }
+
+    public function testInvalidLanguageJsonProducesEmptyLanguageList(): void
+    {
+        $data = self::getCountryData();
+        $data['languages'] = 'not-json';
+
+        $this->assertSame([], (new Country($data))->getLanguages());
+    }
+
+    public function testEuropeanUnionMembershipDistinguishesMemberAndNonMember(): void
+    {
+        $GermanCountry = new Country(self::getCountryData());
+        $britishData = self::getCountryData();
+        $britishData['countries_iso_code_2'] = 'GB';
+        $BritishCountry = new Country($britishData);
+
+        $this->assertTrue($GermanCountry->isEU());
+        $this->assertFalse($BritishCountry->isEU());
+    }
+
+    private static function getCountryData(): array
+    {
+        return [
+            'countries_id' => 1,
+            'countries_name' => 'Germany',
+            'countries_iso_code_2' => 'DE',
+            'countries_iso_code_3' => 'DEU',
+            'numeric_code' => '276',
+            'language' => 'de',
+            'languages' => '[{"language":"de","percent":"100"}]',
+            'currency' => 'EUR',
+            'active' => 1
+        ];
     }
 }

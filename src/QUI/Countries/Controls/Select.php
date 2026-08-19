@@ -10,6 +10,9 @@ use QUI;
 use QUI\Countries\Country;
 use QUI\Countries\Manager;
 
+use function array_keys;
+use function htmlspecialchars;
+use function implode;
 use function mb_strtolower;
 
 /**
@@ -49,11 +52,13 @@ class Select extends QUI\Control
         $result = '<select data-qui="package/quiqqer/countries/bin/controls/Select" ';
 
         if ($this->getAttribute('name')) {
-            $result .= ' name="' . $this->getAttribute('name') . '"';
+            $result .= ' name="' . self::escapeHtml($this->getAttribute('name')) . '"';
         }
 
-        if ($this->getAttribute('class')) {
-            $result .= ' class="' . $this->getAttribute('class') . '"';
+        $cssClasses = array_keys($this->cssClasses);
+
+        if (!empty($cssClasses)) {
+            $result .= ' class="' . self::escapeHtml(implode(' ', $cssClasses)) . '"';
         }
 
         if ($this->getAttribute('required')) {
@@ -94,19 +99,24 @@ class Select extends QUI\Control
 
         /* @var $Country Country */
         foreach ($countries as $Country) {
-            $result .= '<option value="' . $Country->getCode() . '"';
+            $result .= '<option value="' . self::escapeHtml($Country->getCode()) . '"';
 
             if ($Country->getCodeToLower() == mb_strtolower($selected)) {
                 $result .= ' selected="selected"';
             }
 
             $result .= '>';
-            $result .= $Country->getName();
+            $result .= self::escapeHtml($Country->getName());
             $result .= '</option>';
         }
 
         $result .= '</select>';
 
         return $result;
+    }
+
+    private static function escapeHtml(mixed $value): string
+    {
+        return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
     }
 }
