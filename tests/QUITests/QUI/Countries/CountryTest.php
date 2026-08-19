@@ -66,7 +66,10 @@ class CountryTest extends TestCase
             $this->assertSame(QUI::getLocale()->get('quiqqer/countries', $localeVar), $name);
         }
 
-        $this->assertSame('Poland', $name);
+        $Locale = new QUI\Locale();
+        $Locale->setCurrent('en');
+
+        $this->assertSame('Poland', $Country->getName($Locale));
     }
 
     public function testGetLanguages(): void
