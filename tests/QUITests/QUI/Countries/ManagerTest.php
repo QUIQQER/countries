@@ -19,7 +19,7 @@ class ManagerTest extends SqliteDatabaseTestCase
 
     public function testTableNameAndCountryTypeDetection(): void
     {
-        $Country = Manager::get('de');
+        $Country = Manager::get(self::FIXTURE_COUNTRY_CODE_1);
 
         $this->assertSame(QUI::getDBTableName('countries'), Manager::getDataBaseTableName());
         $this->assertTrue(Manager::isCountry($Country));
@@ -29,10 +29,10 @@ class ManagerTest extends SqliteDatabaseTestCase
 
     public function testGetUsesRequestedCodeTypeAndCachesResult(): void
     {
-        $Country = Manager::get('DEU', 'countries_iso_code_3');
+        $Country = Manager::get('XQQ', 'countries_iso_code_3');
 
-        $this->assertSame('DE', $Country->getCode());
-        $this->assertSame($Country, Manager::get('DEU', 'countries_iso_code_3'));
+        $this->assertSame(self::FIXTURE_COUNTRY_CODE_1, $Country->getCode());
+        $this->assertSame($Country, Manager::get('XQQ', 'countries_iso_code_3'));
     }
 
     public function testGetRejectsUnsupportedCodeType(): void
@@ -40,7 +40,7 @@ class ManagerTest extends SqliteDatabaseTestCase
         $this->expectException(QUI\Exception::class);
         $this->expectExceptionCode(404);
 
-        Manager::get('DE', 'numeric_code');
+        Manager::get(self::FIXTURE_COUNTRY_CODE_1, 'numeric_code');
     }
 
     public function testDefaultCountryIsStableAndUsable(): void
@@ -131,7 +131,7 @@ class ManagerTest extends SqliteDatabaseTestCase
         );
 
         $this->assertSame($expectedCodes, Manager::getAllCountryCodes());
-        $this->assertTrue(Manager::existsCountryCode('DE'));
+        $this->assertTrue(Manager::existsCountryCode(self::FIXTURE_COUNTRY_CODE_1));
         $this->assertFalse(Manager::existsCountryCode('__'));
     }
 

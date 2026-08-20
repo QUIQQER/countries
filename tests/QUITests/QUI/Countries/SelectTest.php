@@ -32,7 +32,7 @@ class SelectTest extends SqliteDatabaseTestCase
             'name' => 'billing-country',
             'class' => 'country-input',
             'required' => true,
-            'selected' => 'de',
+            'selected' => self::FIXTURE_COUNTRY_CODE_1,
             'use-geo-location' => false
         ]);
 
@@ -47,7 +47,7 @@ class SelectTest extends SqliteDatabaseTestCase
         $this->assertStringContainsString(' required', $html);
         $this->assertStringContainsString(' autocomplete="country-name"', $html);
         $this->assertMatchesRegularExpression(
-            '/<option value="DE" selected="selected">[^<]+<\/option>/',
+            '/<option value="' . self::FIXTURE_COUNTRY_CODE_1 . '" selected="selected">[^<]+<\/option>/',
             $html
         );
         $this->assertStringEndsWith('</select>', $html);
@@ -59,7 +59,7 @@ class SelectTest extends SqliteDatabaseTestCase
             'name' => '',
             'class' => false,
             'required' => false,
-            'selected' => 'GB',
+            'selected' => self::FIXTURE_COUNTRY_CODE_2,
             'use-geo-location' => false,
             'no-autocomplete' => true
         ]);
@@ -70,14 +70,17 @@ class SelectTest extends SqliteDatabaseTestCase
         $this->assertStringNotContainsString(' class=', $html);
         $this->assertStringNotContainsString(' required', $html);
         $this->assertStringContainsString(' autocomplete="off"', $html);
-        $this->assertStringContainsString('<option value="GB" selected="selected">', $html);
+        $this->assertStringContainsString(
+            '<option value="' . self::FIXTURE_COUNTRY_CODE_2 . '" selected="selected">',
+            $html
+        );
     }
 
     public function testCreateUsesGeoIpCountryWhenNoSelectionWasProvided(): void
     {
         $hadGeoIpCode = array_key_exists('GEOIP_COUNTRY_CODE', $_SERVER);
         $previousGeoIpCode = $_SERVER['GEOIP_COUNTRY_CODE'] ?? null;
-        $_SERVER['GEOIP_COUNTRY_CODE'] = 'PL';
+        $_SERVER['GEOIP_COUNTRY_CODE'] = self::FIXTURE_COUNTRY_CODE_3;
 
         try {
             $html = (new Select())->create();
@@ -89,7 +92,10 @@ class SelectTest extends SqliteDatabaseTestCase
             }
         }
 
-        $this->assertStringContainsString('<option value="PL" selected="selected">', $html);
+        $this->assertStringContainsString(
+            '<option value="' . self::FIXTURE_COUNTRY_CODE_3 . '" selected="selected">',
+            $html
+        );
     }
 
     public function testCreateFallsBackToDefaultCountryForUnknownGeoIpCode(): void
@@ -120,7 +126,7 @@ class SelectTest extends SqliteDatabaseTestCase
         $Select = new Select([
             'name' => '"><script>alert(1)</script>',
             'class' => 'country" autofocus="autofocus',
-            'selected' => 'DE',
+            'selected' => self::FIXTURE_COUNTRY_CODE_1,
             'use-geo-location' => false
         ]);
 
