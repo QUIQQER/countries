@@ -124,7 +124,7 @@ abstract class SqliteDatabaseTestCase extends TestCase
         }
 
         foreach (self::getCountryFixtures() as [$name, $code2, $code3, $numericCode, $language, $currency, $active]) {
-            $this->connection->insert($table, [
+            $this->insertFixture($table, [
                 'countries_name' => $name,
                 'countries_iso_code_2' => $code2,
                 'countries_iso_code_3' => $code3,
@@ -147,6 +147,22 @@ abstract class SqliteDatabaseTestCase extends TestCase
     protected function usesLocalSqlite(): bool
     {
         return $this->ownsTestConnection;
+    }
+
+    /** @param array<string, mixed> $data */
+    protected function insertFixture(string $table, array $data): void
+    {
+        $QueryBuilder = $this->connection->createQueryBuilder()
+            ->insert($this->connection->quoteIdentifier($table));
+
+        foreach ($data as $column => $value) {
+            $parameter = 'value_' . $column;
+            $QueryBuilder
+                ->setValue($this->connection->quoteIdentifier($column), ':' . $parameter)
+                ->setParameter($parameter, $value);
+        }
+
+        $QueryBuilder->executeStatement();
     }
 
     private function setConnection(Connection $Connection): void

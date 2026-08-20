@@ -16,7 +16,7 @@ class CountryCurrencyDatabaseTest extends SqliteDatabaseTestCase
 
         if ($this->usesLocalSqlite()) {
             Update::importDatabase(OPT_DIR . 'quiqqer/currency/database.xml');
-            $this->connection->insert(CurrencyHandler::table(), [
+            $this->insertFixture(CurrencyHandler::table(), [
                 'currency' => 'EUR',
                 'rate' => 1,
                 'autoupdate' => 0,
@@ -26,7 +26,7 @@ class CountryCurrencyDatabaseTest extends SqliteDatabaseTestCase
             ]);
         }
 
-        $this->connection->insert(CurrencyHandler::table(), [
+        $this->insertFixture(CurrencyHandler::table(), [
             'currency' => self::FIXTURE_CURRENCY_CODE,
             'rate' => 1,
             'autoupdate' => 0,
