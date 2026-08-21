@@ -8,4 +8,5 @@ if (!defined('QUIQQER_AJAX')) {
     define('QUIQQER_AJAX', true);
 }
 
+require_once __DIR__ . '/QUITests/QUI/Countries/DatabaseEnvironment.php';
 require_once __DIR__ . '/../../../../bootstrap.php';
