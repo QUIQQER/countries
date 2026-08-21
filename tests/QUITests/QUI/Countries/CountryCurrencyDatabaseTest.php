@@ -14,9 +14,20 @@ class CountryCurrencyDatabaseTest extends SqliteDatabaseTestCase
     {
         parent::setUp();
 
-        Update::importDatabase(OPT_DIR . 'quiqqer/currency/database.xml');
-        $this->connection->insert(CurrencyHandler::table(), [
-            'currency' => 'EUR',
+        if ($this->usesLocalSqlite()) {
+            Update::importDatabase(OPT_DIR . 'quiqqer/currency/database.xml');
+            $this->insertFixture(CurrencyHandler::table(), [
+                'currency' => 'EUR',
+                'rate' => 1,
+                'autoupdate' => 0,
+                'precision' => 2,
+                'type' => CurrencyHandler::CURRENCY_TYPE_DEFAULT,
+                'customData' => null
+            ]);
+        }
+
+        $this->insertFixture(CurrencyHandler::table(), [
+            'currency' => self::FIXTURE_CURRENCY_CODE,
             'rate' => 1,
             'autoupdate' => 0,
             'precision' => 2,
@@ -25,14 +36,14 @@ class CountryCurrencyDatabaseTest extends SqliteDatabaseTestCase
         ]);
     }
 
-    public function testConfiguredCurrencyIsLoadedFromSqlite(): void
+    public function testConfiguredCurrencyIsLoadedFromDatabase(): void
     {
-        $Country = $this->createCountry('EUR');
+        $Country = $this->createCountry(self::FIXTURE_CURRENCY_CODE);
 
-        $this->assertSame('EUR', $Country->getCurrency()->getCode());
+        $this->assertSame(self::FIXTURE_CURRENCY_CODE, $Country->getCurrency()->getCode());
     }
 
-    public function testUnknownCurrencyFallsBackToSqliteDefaultCurrency(): void
+    public function testUnknownCurrencyFallsBackToDefaultCurrency(): void
     {
         $DefaultCurrency = CurrencyHandler::getDefaultCurrency();
         $this->assertNotNull($DefaultCurrency);
