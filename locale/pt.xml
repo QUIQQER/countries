@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<locales>
+    <groups name="quiqqer/countries" datatype="php,js">
+        <locale name="package.title">
+<pt><![CDATA[QUIQQER - Países]]></pt>
+        </locale>
+        <locale name="package.description">
+<pt><![CDATA[Acrescenta ao QUIQQER uma base de dados de países.]]></pt>
+        </locale>
+        <locale name="exception.country.not.found">
+<pt><![CDATA[O país não foi encontrado.]]></pt>
+        </locale>
+
+        <locale name="country.001">
+<pt><![CDATA[Mundo]]></pt>
+        </locale>
+        <locale name="country.002">
+<pt><![CDATA[África]]></pt>
+        </locale>
+        <locale name="country.003">
+<pt><![CDATA[América do Norte]]></pt>
+        </locale>
+        <locale name="country.005">
+<pt><![CDATA[América do Sul]]></pt>
+        </locale>
+        <locale name="country.009">
+<pt><![CDATA[Oceânia]]></pt>
+        </locale>
+        <locale name="country.011">
+<pt><![CDATA[África Ocidental]]></pt>
+        </locale>
+        <locale name="country.013">
+<pt><![CDATA[América Central]]></pt>
+        </locale>
+        <locale name="country.014">
+<pt><![CDATA[África Oriental]]></pt>
+        </locale>
+        <locale name="country.015">
+<pt><![CDATA[Norte de África]]></pt>
+        </locale>
+        <locale name="country.017">
+<pt><![CDATA[África Central]]></pt>
+        </locale>
+        <locale name="country.018">
+<pt><![CDATA[África Austral]]></pt>
+        </locale>
+        <locale name="country.019">
+<pt><![CDATA[Américas]]></pt>
+        </locale>
+        <locale name="country.021">
+<pt><![CDATA[América Setentrional]]></pt>
+        </locale>
+        <locale name="country.029">
+<pt><![CDATA[Caraíbas]]></pt>
+        </locale>
+        <locale name="country.030">
+<pt><![CDATA[Ásia Oriental]]></pt>
+        </locale>
+        <locale name="country.034">
+<pt><![CDATA[Ásia do Sul]]></pt>
+        </locale>
+        <locale name="country.035">
+<pt><![CDATA[Sudeste Asiático]]></pt>
+        </locale>
+        <locale name="country.039">
+<pt><![CDATA[Europa do Sul]]></pt>
+        </locale>
+        <locale name="country.053">
+<pt><![CDATA[Australásia]]></pt>
+        </locale>
+        <locale name="country.054">
+<pt><![CDATA[Melanésia]]></pt>
+        </locale>
+        <locale name="country.057">
+<pt><![CDATA[Região da Micronésia]]></pt>
+        </locale>
+        <locale name="country.061">
+<pt><![CDATA[Polinésia]]></pt>
+        </locale>
+        <locale name="country.142">
+<pt><![CDATA[Ásia]]></pt>
+        </locale>
+        <locale name="country.143">
+<pt><![CDATA[Ásia Central]]></pt>
+        </locale>
+        <locale name="country.145">
+<pt><![CDATA[Ásia Ocidental]]></pt>
+        </locale>
+        <locale name="country.150">
+<pt><![CDATA[Europa]]></pt>
+        </locale>
+        <locale name="country.151">
+<pt><![CDATA[Europa Oriental]]></pt>
+        </locale>
+        <locale name="country.154">
+<pt><![CDATA[Europa do Norte]]></pt>
+        </locale>
+        <locale name="country.155">
+<pt><![CDATA[Europa Ocidental]]></pt>
+        </locale>
+        <locale name="country.419">
+<pt><![CDATA[América Latina]]></pt>
+        </locale>
+        <locale name="country.AC">
+<pt><![CDATA[Ilha de Ascensão]]></pt>
+        </locale>
+        <locale name="country.AD">
+<pt><![CDATA[Andorra]]></pt>
+        </locale>
+        <locale name="country.AE">
+<pt><![CDATA[Emirados Árabes Unidos]]></pt>
+        </locale>
+        <locale name="country.AF">
+<pt><![CDATA[Afeganistão]]></pt>
+        </locale>
+        <locale name="country.AG">
+<pt><![CDATA[Antígua e Barbuda]]></pt>
+        </locale>
+        <locale name="country.AI">
+<pt><![CDATA[Anguila]]></pt>
+        </locale>
+        <locale name="country.AL">
+<pt><![CDATA[Albânia]]></pt>
+        </locale>
+        <locale name="country.AM">
+<pt><![CDATA[Arménia]]></pt>
+        </locale>
+        <locale name="country.AO">
+<pt><![CDATA[Angola]]></pt>
+        </locale>
+        <locale name="country.AQ">
+<pt><![CDATA[Antártida]]></pt>
+        </locale>
+        <locale name="country.AR">
+<pt><![CDATA[Argentina]]></pt>
+        </locale>
+        <locale name="country.AS">
+<pt><![CDATA[Samoa Americana]]></pt>
+        </locale>
+        <locale name="country.AT">
+<pt><![CDATA[Áustria]]></pt>
+        </locale>
+        <locale name="country.AU">
+<pt><![CDATA[Austrália]]></pt>
+        </locale>
+        <locale name="country.AW">
+<pt><![CDATA[Aruba]]></pt>
+        </locale>
+        <locale name="country.AX">
+<pt><![CDATA[Alanda]]></pt>
+        </locale>
+        <locale name="country.AZ">
+<pt><![CDATA[Azerbaijão]]></pt>
+        </locale>
+        <locale name="country.BA">
+<pt><![CDATA[Bósnia e Herzegovina]]></pt>
+        </locale>
+        <locale name="country.BB">
+<pt><![CDATA[Barbados]]></pt>
+        </locale>
+        <locale name="country.BD">
+<pt><![CDATA[Bangladeche]]></pt>
+        </locale>
+        <locale name="country.BE">
+<pt><![CDATA[Bélgica]]></pt>
+        </locale>
+        <locale name="country.BF">
+<pt><![CDATA[Burquina Faso]]></pt>
+        </locale>
+        <locale name="country.BG">
+<pt><![CDATA[Bulgária]]></pt>
+        </locale>
+        <locale name="country.BH">
+<pt><![CDATA[Barém]]></pt>
+        </locale>
+        <locale name="country.BI">
+<pt><![CDATA[Burundi]]></pt>
+        </locale>
+        <locale name="country.BJ">
+<pt><![CDATA[Benim]]></pt>
+        </locale>
+        <locale name="country.BL">
+<pt><![CDATA[São Bartolomeu]]></pt>
+        </locale>
+        <locale name="country.BM">
+<pt><![CDATA[Bermudas]]></pt>
+        </locale>
+        <locale name="country.BN">
+<pt><![CDATA[Brunei]]></pt>
+        </locale>
+        <locale name="country.BO">
+<pt><![CDATA[Bolívia]]></pt>
+        </locale>
+        <locale name="country.BQ">
+<pt><![CDATA[Países Baixos Caribenhos]]></pt>
+        </locale>
+        <locale name="country.BR">
+<pt><![CDATA[Brasil]]></pt>
+        </locale>
+        <locale name="country.BS">
+<pt><![CDATA[Baamas]]></pt>
+        </locale>
+        <locale name="country.BT">
+<pt><![CDATA[Butão]]></pt>
+        </locale>
+        <locale name="country.BV">
+<pt><![CDATA[Ilha Bouvet]]></pt>
+        </locale>
+        <locale name="country.BW">
+<pt><![CDATA[Botsuana]]></pt>
+        </locale>
+        <locale name="country.BY">
+<pt><![CDATA[Bielorrússia]]></pt>
+        </locale>
+        <locale name="country.BZ">
+<pt><![CDATA[Belize]]></pt>
+        </locale>
+        <locale name="country.CA">
+<pt><![CDATA[Canadá]]></pt>
+        </locale>
+        <locale name="country.CC">
+<pt><![CDATA[Ilhas dos Cocos (Keeling)]]></pt>
+        </locale>
+        <locale name="country.CD">
+<pt><![CDATA[Congo-Kinshasa]]></pt>
+        </locale>
+        <locale name="country.CD-alt-variant">
+<pt><![CDATA[Congo (República Democrática)]]></pt>
+        </locale>
+        <locale name="country.CF">
+<pt><![CDATA[República Centro-Africana]]></pt>
+        </locale>
+        <locale name="country.CG">
+<pt><![CDATA[Congo-Brazzaville]]></pt>
+        </locale>
+        <locale name="country.CG-alt-variant">
+<pt><![CDATA[Congo (República)]]></pt>
+        </locale>
+        <locale name="country.CH">
+<pt><![CDATA[Suíça]]></pt>
+        </locale>
+        <locale name="country.CI">
+<pt><![CDATA[Côte d’Ivoire]]></pt>
+        </locale>
+        <locale name="country.CI-alt-variant">
+<pt><![CDATA[Costa do Marfim]]></pt>
+        </locale>
+        <locale name="country.CK">
+<pt><![CDATA[Ilhas Cook]]></pt>
+        </locale>
+        <locale name="country.CL">
+<pt><![CDATA[Chile]]></pt>
+        </locale>
+        <locale name="country.CM">
+<pt><![CDATA[Camarões]]></pt>
+        </locale>
+        <locale name="country.CN">
+<pt><![CDATA[China]]></pt>
+        </locale>
+        <locale name="country.CO">
+<pt><![CDATA[Colômbia]]></pt>
+        </locale>
+        <locale name="country.CP">
+<pt><![CDATA[Ilha de Clipperton]]></pt>
+        </locale>
+        <locale name="country.CR">
+<pt><![CDATA[Costa Rica]]></pt>
+        </locale>
+        <locale name="country.CU">
+<pt><![CDATA[Cuba]]></pt>
+        </locale>
+        <locale name="country.CV">
+<pt><![CDATA[Cabo Verde]]></pt>
+        </locale>
+        <locale name="country.CW">
+<pt><![CDATA[Curaçau]]></pt>
+        </locale>
+        <locale name="country.CX">
+<pt><![CDATA[Ilha do Natal]]></pt>
+        </locale>
+        <locale name="country.CY">
+<pt><![CDATA[Chipre]]></pt>
+        </locale>
+        <locale name="country.CZ">
+<pt><![CDATA[República Checa]]></pt>
+        </locale>
+        <locale name="country.DE">
+<pt><![CDATA[Alemanha]]></pt>
+        </locale>
+        <locale name="country.DG">
+<pt><![CDATA[Diego Garcia]]></pt>
+        </locale>
+        <locale name="country.DJ">
+<pt><![CDATA[Jibuti]]></pt>
+        </locale>
+        <locale name="country.DK">
+<pt><![CDATA[Dinamarca]]></pt>
+        </locale>
+        <locale name="country.DM">
+<pt><![CDATA[Domínica]]></pt>
+        </locale>
+        <locale name="country.DO">
+<pt><![CDATA[República Dominicana]]></pt>
+        </locale>
+        <locale name="country.DZ">
+<pt><![CDATA[Argélia]]></pt>
+        </locale>
+        <locale name="country.EA">
+<pt><![CDATA[Ceuta e Melilha]]></pt>
+        </locale>
+        <locale name="country.EC">
+<pt><![CDATA[Equador]]></pt>
+        </locale>
+        <locale name="country.EE">
+<pt><![CDATA[Estónia]]></pt>
+        </locale>
+        <locale name="country.EG">
+<pt><![CDATA[Egito]]></pt>
+        </locale>
+        <locale name="country.EH">
+<pt><![CDATA[Sara Ocidental]]></pt>
+        </locale>
+        <locale name="country.ER">
+<pt><![CDATA[Eritreia]]></pt>
+        </locale>
+        <locale name="country.ES">
+<pt><![CDATA[Espanha]]></pt>
+        </locale>
+        <locale name="country.ET">
+<pt><![CDATA[Etiópia]]></pt>
+        </locale>
+        <locale name="country.EU">
+<pt><![CDATA[União Europeia]]></pt>
+        </locale>
+        <locale name="country.FI">
+<pt><![CDATA[Finlândia]]></pt>
+        </locale>
+        <locale name="country.FJ">
+<pt><![CDATA[Fiji]]></pt>
+        </locale>
+        <locale name="country.FK">
+<pt><![CDATA[Ilhas Falkland]]></pt>
+        </locale>
+        <locale name="country.FK-alt-variant">
+<pt><![CDATA[Ilhas Falkland (Malvinas)]]></pt>
+        </locale>
+        <locale name="country.FM">
+<pt><![CDATA[Micronésia]]></pt>
+        </locale>
+        <locale name="country.FO">
+<pt><![CDATA[Ilhas Faroé]]></pt>
+        </locale>
+        <locale name="country.FR">
+<pt><![CDATA[França]]></pt>
+        </locale>
+        <locale name="country.GA">
+<pt><![CDATA[Gabão]]></pt>
+        </locale>
+        <locale name="country.GB">
+<pt><![CDATA[Reino Unido]]></pt>
+        </locale>
+        <locale name="country.GB-alt-short">
+<pt><![CDATA[RU]]></pt>
+        </locale>
+        <locale name="country.GD">
+<pt><![CDATA[Granada]]></pt>
+        </locale>
+        <locale name="country.GE">
+<pt><![CDATA[Geórgia]]></pt>
+        </locale>
+        <locale name="country.GF">
+<pt><![CDATA[Guiana Francesa]]></pt>
+        </locale>
+        <locale name="country.GG">
+<pt><![CDATA[Guernesey]]></pt>
+        </locale>
+        <locale name="country.GH">
+<pt><![CDATA[Gana]]></pt>
+        </locale>
+        <locale name="country.GI">
+<pt><![CDATA[Gibraltar]]></pt>
+        </locale>
+        <locale name="country.GL">
+<pt><![CDATA[Gronelândia]]></pt>
+        </locale>
+        <locale name="country.GM">
+<pt><![CDATA[Gâmbia]]></pt>
+        </locale>
+        <locale name="country.GN">
+<pt><![CDATA[Guiné]]></pt>
+        </locale>
+        <locale name="country.GP">
+<pt><![CDATA[Guadalupe]]></pt>
+        </locale>
+        <locale name="country.GQ">
+<pt><![CDATA[Guiné Equatorial]]></pt>
+        </locale>
+        <locale name="country.GR">
+<pt><![CDATA[Grécia]]></pt>
+        </locale>
+        <locale name="country.GS">
+<pt><![CDATA[Ilhas Geórgia do Sul e Sandwich do Sul]]></pt>
+        </locale>
+        <locale name="country.GT">
+<pt><![CDATA[Guatemala]]></pt>
+        </locale>
+        <locale name="country.GU">
+<pt><![CDATA[Guame]]></pt>
+        </locale>
+        <locale name="country.GW">
+<pt><![CDATA[Guiné-Bissau]]></pt>
+        </locale>
+        <locale name="country.GY">
+<pt><![CDATA[Guiana]]></pt>
+        </locale>
+        <locale name="country.HK">
+<pt><![CDATA[Hong Kong, RAE da China]]></pt>
+        </locale>
+        <locale name="country.HK-alt-short">
+<pt><![CDATA[Hong Kong]]></pt>
+        </locale>
+        <locale name="country.HM">
+<pt><![CDATA[Ilhas Heard e McDonald]]></pt>
+        </locale>
+        <locale name="country.HN">
+<pt><![CDATA[Honduras]]></pt>
+        </locale>
+        <locale name="country.HR">
+<pt><![CDATA[Croácia]]></pt>
+        </locale>
+        <locale name="country.HT">
+<pt><![CDATA[Haiti]]></pt>
+        </locale>
+        <locale name="country.HU">
+<pt><![CDATA[Hungria]]></pt>
+        </locale>
+        <locale name="country.IC">
+<pt><![CDATA[Ilhas Canárias]]></pt>
+        </locale>
+        <locale name="country.ID">
+<pt><![CDATA[Indonésia]]></pt>
+        </locale>
+        <locale name="country.IE">
+<pt><![CDATA[Irlanda]]></pt>
+        </locale>
+        <locale name="country.IL">
+<pt><![CDATA[Israel]]></pt>
+        </locale>
+        <locale name="country.IM">
+<pt><![CDATA[Ilha de Man]]></pt>
+        </locale>
+        <locale name="country.IN">
+<pt><![CDATA[Índia]]></pt>
+        </locale>
+        <locale name="country.IO">
+<pt><![CDATA[Território Britânico do Oceano Índico]]></pt>
+        </locale>
+        <locale name="country.IQ">
+<pt><![CDATA[Iraque]]></pt>
+        </locale>
+        <locale name="country.IR">
+<pt><![CDATA[Irão]]></pt>
+        </locale>
+        <locale name="country.IS">
+<pt><![CDATA[Islândia]]></pt>
+        </locale>
+        <locale name="country.IT">
+<pt><![CDATA[Itália]]></pt>
+        </locale>
+        <locale name="country.JE">
+<pt><![CDATA[Jersey]]></pt>
+        </locale>
+        <locale name="country.JM">
+<pt><![CDATA[Jamaica]]></pt>
+        </locale>
+        <locale name="country.JO">
+<pt><![CDATA[Jordânia]]></pt>
+        </locale>
+        <locale name="country.JP">
+<pt><![CDATA[Japão]]></pt>
+        </locale>
+        <locale name="country.KE">
+<pt><![CDATA[Quénia]]></pt>
+        </locale>
+        <locale name="country.KG">
+<pt><![CDATA[Quirguistão]]></pt>
+        </locale>
+        <locale name="country.KH">
+<pt><![CDATA[Camboja]]></pt>
+        </locale>
+        <locale name="country.KI">
+<pt><![CDATA[Quiribáti]]></pt>
+        </locale>
+        <locale name="country.KM">
+<pt><![CDATA[Comores]]></pt>
+        </locale>
+        <locale name="country.KN">
+<pt><![CDATA[São Cristóvão e Neves]]></pt>
+        </locale>
+        <locale name="country.KP">
+<pt><![CDATA[Coreia do Norte]]></pt>
+        </locale>
+        <locale name="country.KR">
+<pt><![CDATA[Coreia do Sul]]></pt>
+        </locale>
+        <locale name="country.KW">
+<pt><![CDATA[Koweit]]></pt>
+        </locale>
+        <locale name="country.KY">
+<pt><![CDATA[Ilhas Caimão]]></pt>
+        </locale>
+        <locale name="country.KZ">
+<pt><![CDATA[Cazaquistão]]></pt>
+        </locale>
+        <locale name="country.LA">
+<pt><![CDATA[Laos]]></pt>
+        </locale>
+        <locale name="country.LB">
+<pt><![CDATA[Líbano]]></pt>
+        </locale>
+        <locale name="country.LC">
+<pt><![CDATA[Santa Lúcia]]></pt>
+        </locale>
+        <locale name="country.LI">
+<pt><![CDATA[Listenstaine]]></pt>
+        </locale>
+        <locale name="country.LK">
+<pt><![CDATA[Sri Lanca]]></pt>
+        </locale>
+        <locale name="country.LR">
+<pt><![CDATA[Libéria]]></pt>
+        </locale>
+        <locale name="country.LS">
+<pt><![CDATA[Lesoto]]></pt>
+        </locale>
+        <locale name="country.LT">
+<pt><![CDATA[Lituânia]]></pt>
+        </locale>
+        <locale name="country.LU">
+<pt><![CDATA[Luxemburgo]]></pt>
+        </locale>
+        <locale name="country.LV">
+<pt><![CDATA[Letónia]]></pt>
+        </locale>
+        <locale name="country.LY">
+<pt><![CDATA[Líbia]]></pt>
+        </locale>
+        <locale name="country.MA">
+<pt><![CDATA[Marrocos]]></pt>
+        </locale>
+        <locale name="country.MC">
+<pt><![CDATA[Mónaco]]></pt>
+        </locale>
+        <locale name="country.MD">
+<pt><![CDATA[Moldávia]]></pt>
+        </locale>
+        <locale name="country.ME">
+<pt><![CDATA[Montenegro]]></pt>
+        </locale>
+        <locale name="country.MF">
+<pt><![CDATA[São Martinho]]></pt>
+        </locale>
+        <locale name="country.MG">
+<pt><![CDATA[Madagáscar]]></pt>
+        </locale>
+        <locale name="country.MH">
+<pt><![CDATA[Ilhas Marshall]]></pt>
+        </locale>
+        <locale name="country.MK">
+<pt><![CDATA[Macedónia]]></pt>
+        </locale>
+        <locale name="country.MK-alt-variant">
+<pt><![CDATA[Macedónia (Antiga República Jugoslava)]]></pt>
+        </locale>
+        <locale name="country.ML">
+<pt><![CDATA[Mali]]></pt>
+        </locale>
+        <locale name="country.MM">
+<pt><![CDATA[Mianmar (Birmânia)]]></pt>
+        </locale>
+        <locale name="country.MN">
+<pt><![CDATA[Mongólia]]></pt>
+        </locale>
+        <locale name="country.MO">
+<pt><![CDATA[Macau, RAE da China]]></pt>
+        </locale>
+        <locale name="country.MO-alt-short">
+<pt><![CDATA[Macau]]></pt>
+        </locale>
+        <locale name="country.MP">
+<pt><![CDATA[Ilhas Marianas do Norte]]></pt>
+        </locale>
+        <locale name="country.MQ">
+<pt><![CDATA[Martinica]]></pt>
+        </locale>
+        <locale name="country.MR">
+<pt><![CDATA[Mauritânia]]></pt>
+        </locale>
+        <locale name="country.MS">
+<pt><![CDATA[Monserrate]]></pt>
+        </locale>
+        <locale name="country.MT">
+<pt><![CDATA[Malta]]></pt>
+        </locale>
+        <locale name="country.MU">
+<pt><![CDATA[Maurícia]]></pt>
+        </locale>
+        <locale name="country.MV">
+<pt><![CDATA[Maldivas]]></pt>
+        </locale>
+        <locale name="country.MW">
+<pt><![CDATA[Maláui]]></pt>
+        </locale>
+        <locale name="country.MX">
+<pt><![CDATA[México]]></pt>
+        </locale>
+        <locale name="country.MY">
+<pt><![CDATA[Malásia]]></pt>
+        </locale>
+        <locale name="country.MZ">
+<pt><![CDATA[Moçambique]]></pt>
+        </locale>
+        <locale name="country.NA">
+<pt><![CDATA[Namíbia]]></pt>
+        </locale>
+        <locale name="country.NC">
+<pt><![CDATA[Nova Caledónia]]></pt>
+        </locale>
+        <locale name="country.NE">
+<pt><![CDATA[Níger]]></pt>
+        </locale>
+        <locale name="country.NF">
+<pt><![CDATA[Ilha Norfolk]]></pt>
+        </locale>
+        <locale name="country.NG">
+<pt><![CDATA[Nigéria]]></pt>
+        </locale>
+        <locale name="country.NI">
+<pt><![CDATA[Nicarágua]]></pt>
+        </locale>
+        <locale name="country.NL">
+<pt><![CDATA[Países Baixos]]></pt>
+        </locale>
+        <locale name="country.NO">
+<pt><![CDATA[Noruega]]></pt>
+        </locale>
+        <locale name="country.NP">
+<pt><![CDATA[Nepal]]></pt>
+        </locale>
+        <locale name="country.NR">
+<pt><![CDATA[Nauru]]></pt>
+        </locale>
+        <locale name="country.NU">
+<pt><![CDATA[Niuê]]></pt>
+        </locale>
+        <locale name="country.NZ">
+<pt><![CDATA[Nova Zelândia]]></pt>
+        </locale>
+        <locale name="country.OM">
+<pt><![CDATA[Omã]]></pt>
+        </locale>
+        <locale name="country.PA">
+<pt><![CDATA[Panamá]]></pt>
+        </locale>
+        <locale name="country.PE">
+<pt><![CDATA[Peru]]></pt>
+        </locale>
+        <locale name="country.PF">
+<pt><![CDATA[Polinésia Francesa]]></pt>
+        </locale>
+        <locale name="country.PG">
+<pt><![CDATA[Papua-Nova Guiné]]></pt>
+        </locale>
+        <locale name="country.PH">
+<pt><![CDATA[Filipinas]]></pt>
+        </locale>
+        <locale name="country.PK">
+<pt><![CDATA[Paquistão]]></pt>
+        </locale>
+        <locale name="country.PL">
+<pt><![CDATA[Polónia]]></pt>
+        </locale>
+        <locale name="country.PM">
+<pt><![CDATA[São Pedro e Miquelão]]></pt>
+        </locale>
+        <locale name="country.PN">
+<pt><![CDATA[Ilhas Pitcairn]]></pt>
+        </locale>
+        <locale name="country.PR">
+<pt><![CDATA[Porto Rico]]></pt>
+        </locale>
+        <locale name="country.PS">
+<pt><![CDATA[Territórios palestinianos]]></pt>
+        </locale>
+        <locale name="country.PS-alt-short">
+<pt><![CDATA[Palestina]]></pt>
+        </locale>
+        <locale name="country.PT">
+<pt><![CDATA[Portugal]]></pt>
+        </locale>
+        <locale name="country.PW">
+<pt><![CDATA[Palau]]></pt>
+        </locale>
+        <locale name="country.PY">
+<pt><![CDATA[Paraguai]]></pt>
+        </locale>
+        <locale name="country.QA">
+<pt><![CDATA[Catar]]></pt>
+        </locale>
+        <locale name="country.QO">
+<pt><![CDATA[Oceânia Insular]]></pt>
+        </locale>
+        <locale name="country.RE">
+<pt><![CDATA[Reunião]]></pt>
+        </locale>
+        <locale name="country.RO">
+<pt><![CDATA[Roménia]]></pt>
+        </locale>
+        <locale name="country.RS">
+<pt><![CDATA[Sérvia]]></pt>
+        </locale>
+        <locale name="country.RU">
+<pt><![CDATA[Rússia]]></pt>
+        </locale>
+        <locale name="country.RW">
+<pt><![CDATA[Ruanda]]></pt>
+        </locale>
+        <locale name="country.SA">
+<pt><![CDATA[Arábia Saudita]]></pt>
+        </locale>
+        <locale name="country.SB">
+<pt><![CDATA[Ilhas Salomão]]></pt>
+        </locale>
+        <locale name="country.SC">
+<pt><![CDATA[Seicheles]]></pt>
+        </locale>
+        <locale name="country.SD">
+<pt><![CDATA[Sudão]]></pt>
+        </locale>
+        <locale name="country.SE">
+<pt><![CDATA[Suécia]]></pt>
+        </locale>
+        <locale name="country.SG">
+<pt><![CDATA[Singapura]]></pt>
+        </locale>
+        <locale name="country.SH">
+<pt><![CDATA[Santa Helena]]></pt>
+        </locale>
+        <locale name="country.SI">
+<pt><![CDATA[Eslovénia]]></pt>
+        </locale>
+        <locale name="country.SJ">
+<pt><![CDATA[Svalbard e Jan Mayen]]></pt>
+        </locale>
+        <locale name="country.SK">
+<pt><![CDATA[Eslováquia]]></pt>
+        </locale>
+        <locale name="country.SL">
+<pt><![CDATA[Serra Leoa]]></pt>
+        </locale>
+        <locale name="country.SM">
+<pt><![CDATA[São Marinho]]></pt>
+        </locale>
+        <locale name="country.SN">
+<pt><![CDATA[Senegal]]></pt>
+        </locale>
+        <locale name="country.SO">
+<pt><![CDATA[Somália]]></pt>
+        </locale>
+        <locale name="country.SR">
+<pt><![CDATA[Suriname]]></pt>
+        </locale>
+        <locale name="country.SS">
+<pt><![CDATA[Sudão do Sul]]></pt>
+        </locale>
+        <locale name="country.ST">
+<pt><![CDATA[São Tomé e Príncipe]]></pt>
+        </locale>
+        <locale name="country.SV">
+<pt><![CDATA[Salvador]]></pt>
+        </locale>
+        <locale name="country.SX">
+<pt><![CDATA[São Martinho (Sint Maarten)]]></pt>
+        </locale>
+        <locale name="country.SY">
+<pt><![CDATA[Síria]]></pt>
+        </locale>
+        <locale name="country.SZ">
+<pt><![CDATA[Suazilândia]]></pt>
+        </locale>
+        <locale name="country.TA">
+<pt><![CDATA[Tristão da Cunha]]></pt>
+        </locale>
+        <locale name="country.TC">
+<pt><![CDATA[Ilhas Turcas e Caicos]]></pt>
+        </locale>
+        <locale name="country.TD">
+<pt><![CDATA[Chade]]></pt>
+        </locale>
+        <locale name="country.TF">
+<pt><![CDATA[Territórios Austrais Franceses]]></pt>
+        </locale>
+        <locale name="country.TG">
+<pt><![CDATA[Togo]]></pt>
+        </locale>
+        <locale name="country.TH">
+<pt><![CDATA[Tailândia]]></pt>
+        </locale>
+        <locale name="country.TJ">
+<pt><![CDATA[Tajiquistão]]></pt>
+        </locale>
+        <locale name="country.TK">
+<pt><![CDATA[Toquelau]]></pt>
+        </locale>
+        <locale name="country.TL">
+<pt><![CDATA[Timor-Leste]]></pt>
+        </locale>
+        <locale name="country.TL-alt-variant">
+<pt><![CDATA[Timor Oriental]]></pt>
+        </locale>
+        <locale name="country.TM">
+<pt><![CDATA[Turquemenistão]]></pt>
+        </locale>
+        <locale name="country.TN">
+<pt><![CDATA[Tunísia]]></pt>
+        </locale>
+        <locale name="country.TO">
+<pt><![CDATA[Tonga]]></pt>
+        </locale>
+        <locale name="country.TR">
+<pt><![CDATA[Turquia]]></pt>
+        </locale>
+        <locale name="country.TT">
+<pt><![CDATA[Trindade e Tobago]]></pt>
+        </locale>
+        <locale name="country.TV">
+<pt><![CDATA[Tuvalu]]></pt>
+        </locale>
+        <locale name="country.TW">
+<pt><![CDATA[Taiwan]]></pt>
+        </locale>
+        <locale name="country.TZ">
+<pt><![CDATA[Tanzânia]]></pt>
+        </locale>
+        <locale name="country.UA">
+<pt><![CDATA[Ucrânia]]></pt>
+        </locale>
+        <locale name="country.UG">
+<pt><![CDATA[Uganda]]></pt>
+        </locale>
+        <locale name="country.UM">
+<pt><![CDATA[Ilhas Menores Afastadas dos EUA]]></pt>
+        </locale>
+        <locale name="country.US">
+<pt><![CDATA[Estados Unidos]]></pt>
+        </locale>
+        <locale name="country.US-alt-short">
+<pt><![CDATA[EUA]]></pt>
+        </locale>
+        <locale name="country.UY">
+<pt><![CDATA[Uruguai]]></pt>
+        </locale>
+        <locale name="country.UZ">
+<pt><![CDATA[Usbequistão]]></pt>
+        </locale>
+        <locale name="country.VA">
+<pt><![CDATA[Cidade do Vaticano]]></pt>
+        </locale>
+        <locale name="country.VC">
+<pt><![CDATA[São Vicente e Granadinas]]></pt>
+        </locale>
+        <locale name="country.VE">
+<pt><![CDATA[Venezuela]]></pt>
+        </locale>
+        <locale name="country.VG">
+<pt><![CDATA[Ilhas Virgens Britânicas]]></pt>
+        </locale>
+        <locale name="country.VI">
+<pt><![CDATA[Ilhas Virgens dos EUA]]></pt>
+        </locale>
+        <locale name="country.VN">
+<pt><![CDATA[Vietname]]></pt>
+        </locale>
+        <locale name="country.VU">
+<pt><![CDATA[Vanuatu]]></pt>
+        </locale>
+        <locale name="country.WF">
+<pt><![CDATA[Wallis e Futuna]]></pt>
+        </locale>
+        <locale name="country.WS">
+<pt><![CDATA[Samoa]]></pt>
+        </locale>
+        <locale name="country.XK">
+<pt><![CDATA[Kosovo]]></pt>
+        </locale>
+        <locale name="country.YE">
+<pt><![CDATA[Iémen]]></pt>
+        </locale>
+        <locale name="country.YT">
+<pt><![CDATA[Maiote]]></pt>
+        </locale>
+        <locale name="country.ZA">
+<pt><![CDATA[África do Sul]]></pt>
+        </locale>
+        <locale name="country.ZM">
+<pt><![CDATA[Zâmbia]]></pt>
+        </locale>
+        <locale name="country.ZW">
+<pt><![CDATA[Zimbabué]]></pt>
+        </locale>
+        <locale name="country.ZZ">
+<pt><![CDATA[Região desconhecida]]></pt>
+        </locale>
+        <locale name="country.EN">
+<pt><![CDATA[Inglaterra]]></pt>
+        </locale>
+    </groups>
+</locales>
