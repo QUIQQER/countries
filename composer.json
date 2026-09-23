@@ -1,6 +1,6 @@
 {
     "name": "quiqqer/countries",
-    "type": "quiqqer-plugin",
+    "type": "quiqqer-module",
     "description": "Extend QUIQQER with a country database",
     "license": "MIT",
     "authors": [
